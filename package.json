@@ -1,0 +1,29 @@
+{
+  "name": "ikigai-electron-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "build": "electron-builder build --win --publish never",
+    "deploy": "electron-builder build --win --publish always"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^10.1.2",
+    "electron-builder": "^22.8.1"
+  },
+  "dependencies": {
+    "custom-electron-titlebar": "^3.2.4",
+    "electron-updater": "^4.3.5",
+    "express": "^4.17.1",
+    "path": "^0.12.7",
+    "url": "^0.11.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/virinchi-hutech/ikigai-demo-electron.git"
+  }
+}

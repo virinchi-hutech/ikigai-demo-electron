@@ -1,0 +1,8 @@
+{
+    "appId": "com.example.app",
+    "productName": "AppName",
+    "copyright": "Copyright © Company",
+    "directories": {
+      "output": "release/"
+    }
+}  

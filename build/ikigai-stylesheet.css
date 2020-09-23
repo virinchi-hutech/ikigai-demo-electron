@@ -1,0 +1,293 @@
+/* IkigaiLabs stylesheet */
+
+/* Import fonts - Open Sans */
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap');
+
+/* General styling */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body{
+    background-color: #fbfcfd;
+    color: #555;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+}
+
+/*******************************
+- LAYOUT -
+*******************************/
+
+.header{
+    margin: 16px 16px 8px 16px;
+    padding: 8px 16px;
+}
+
+.row{
+    margin: 8px 16px;
+    padding: 8px 0;
+}
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+    .column {
+        padding: 16px;
+        float: left;
+    }
+
+        .col-box{
+            padding: 32px;
+            background-color: #FFF;
+            border-radius: 5px;
+            border: 1px solid rgba(63, 81, 181, 0.09);
+            /*box-shadow: 0 0 10px -3px rgba(0, 0, 0, 0.1);*/
+        }
+            .col-box .table{ margin-bottom: 24px; }
+                .col-box .table tbody{ /*border-bottom: 0;*/ }
+
+.col1-2{ width: 50%; }
+.col1-3{ width: 33.33%; }
+.col2-3{ width: 66.66%; }
+.col1-4{ width: 25%; }
+.col2-4{ width: 50%; }
+.col3-4{ width: 75%; }
+.col100{ width: 100%; }
+
+/*******************************
+- TABLES -
+*******************************/
+
+table, .table {
+    width: 100%;
+    background-color: transparent;
+    border: none;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+    .table thead {
+        display: table-header-group;
+    }
+
+        table tr th, .table thead tr th {  
+            padding: 8px 16px;
+            color: #555;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: bold;
+            line-height: 1.33;
+            letter-spacing: 0em;
+            border-bottom: 3px solid rgba(63, 81, 181, 0.1);
+        }
+
+    .table tbody {
+        display: table-row-group;
+        border-bottom: 3px solid rgba(63, 81, 181, 0.1);
+    }
+    
+        table tr td, .table tbody tr td {  
+            padding: 8px 16px;
+            color: #555;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            line-height: 1.33;
+            letter-spacing: 0em;
+            border-bottom: 1px solid rgba(63, 81, 181, 0.1);
+        }
+
+/*******************************
+- BUTTONS -
+*******************************/
+
+.button-holder{
+    margin-bottom: 16px;
+}
+
+button, .button{
+    min-width: 64px;
+    padding: 6px 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    vertical-align: middle;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.75;
+    letter-spacing: 0.02857em;
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.button.primary{
+    color: #fff;
+    background-color: #3f51b5;
+}
+.button.primary:hover{ background-color: #303f9f; }
+.button.primary:active{ background-color: #3f51b5; }
+
+.button.primary{
+    color: #fff;
+    background-color: #3f51b5;
+}
+.button.primary:hover{ background-color: #303f9f; }
+.button.primary:active{ background-color: #3f51b5; }
+
+.button.secondary{
+    color: #555;
+    background-color: rgba(178, 176, 176, 0.3);
+}
+.button.secondary:hover{ background-color: rgba(178, 176, 176, 0.45); }
+.button.secondary:active{ background-color: rgba(178, 176, 176, 0.3); }
+
+/***** 
+INPUTS
+*****/
+
+.input{
+    width: auto;
+    min-width: 50px;
+    background-color: transparent;
+}
+
+.input.default{
+    padding: 8px 16px;
+    border: 2px solid rgba(178, 176, 176, 0.3);
+    border-radius: 5px;
+    color: #555;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+}
+.input.default:hover{
+    border: 2px solid rgba(178, 176, 176, 0.5);
+}
+.input.default:focus{
+    border: 2px solid rgba(63, 81, 181, 1);
+}
+
+/***** 
+INPUTS
+*****/
+
+.link{
+    display: inline-block;
+    color: #3f51b5;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: none;
+}
+
+/**** 
+COLORS
+*****/
+
+  /* Background colors */
+  .succes-bg { background-color: #4caf50 !important; }
+  .info-bg { background-color: #2196f3 !important; }
+  .warning-bg { background-color: #ffc107 !important; }
+  .error-bg { background-color: #f44336 !important; }
+  .primary-bg { background-color: #3f51b5 !important; }
+  .no-bg { background-color: transparent !important; }
+  
+  /* Font colors */
+  .succes-color { color: #4caf50 !important; }
+  .info-color { color: #2196f3 !important; }
+  .warning-color { color: #ffc107 !important; }
+  .error-color { color: #f44336 !important; }
+  .primary-color { color: #878ca8; }
+  .white-color { color: #ffffff !important; }
+  .no-color { color: transparent !important; }
+  .primary-color { color: #3f51b5; }
+  .default-color { color: #555555; }
+  .secondary-color { color: #B2B0B0; }
+
+  /* Error */
+  .has-error{
+    background-color: #FFCDD2;
+    color: #555;
+  }
+
+  /* Success */
+  .has-success{
+    background-color: #C8E6C9;
+    color: #555;
+  }
+
+  /* Warning */
+  .has-warning{
+    background-color: #FFE0B2;
+    color: #555;
+  }
+
+  /* Info */
+  .has-info{
+    background-color: #3F51B5;
+    color: #555;
+  }
+
+/*******************************
+- TEXT -
+*******************************/
+
+/* H TAGS - TITLES */
+
+h1, h2, h3, h4, h5, h6, .title{
+    margin-bottom: 16px;
+}
+h1{
+    font-weight: 700;
+}
+h2, h3{
+    font-weight: 600;
+}
+h4, h5, h6{
+    font-weight: 400;
+}
+
+/* Text align */
+.txt-left{ text-align: left; }
+.txt-center{ text-align: center; }
+.txt-right{ text-align: right; }
+.txt-justify{ text-align: justify; }
+
+/************************************
+- TEST CONTENT  STYLES (DO NOT USE) -
+************************************/
+
+._box-bgColor{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/************************************
+- RESPONSIVE -
+************************************/
+
+@media screen and (max-width: 1024px) {
+    .column {
+        float: none;
+        width: 100%;
+        display: block;
+    }
+}

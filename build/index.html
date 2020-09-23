@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="description" content="IkigaiLabs web app" />
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#3f51b5">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="manifest" href="/manifest.json" />
+    <title>Ikigai</title>
+    <link href="/static/css/2.25b83785.chunk.css" rel="stylesheet">
+    <link href="/static/css/main.521d1104.chunk.css" rel="stylesheet">
+    <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 20px;
+            font-family: sans-serif;
+            background-color: #eaeaea;
+            text-align: center;
+        }
+
+        #notification {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 200px;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: white;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body><noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+    <div id="notification" class="hidden">
+        <p id="message"></p>
+        <button id="close-button" onClick="closeNotification()">
+            Close
+        </button>
+        <button id="restart-button" onClick="restartApp()" class="hidden">
+            Restart
+        </button>
+    </div>
+    <script>
+        const customTitlebar = require('custom-electron-titlebar')
+
+        let MyTitleBar = new customTitlebar.Titlebar({
+            backgroundColor: new customTitlebar.Color(new customTitlebar.RGBA(255, 255, 255, 0)),
+            shadow: false,
+            enableMnemonics: true,
+        });
+
+        MyTitleBar.updateTitle(' ');
+        MyTitleBar.updateMenu({});
+        document.getElementsByClassName('window-controls-container')[0].style.position = 'absolute'
+        document.getElementsByClassName('window-controls-container')[0].style.right = '10px'
+        document.getElementsByClassName('window-title')[0].style.display = 'none'
+
+        window['closeApp'] = function (callBack) {
+            var r = confirm("Do you want to minimize.");
+            var ele = require('electron')
+            if (r == true) {
+                ele.remote.getCurrentWindow().hide()
+            } else {
+                ele.remote.getCurrentWindow().close()
+            }
+        }
+    </script>
+    <script>
+        const { ipcRenderer } = require('electron');
+        const version = document.getElementById('version');
+        const notification = document.getElementById('notification');
+        const message = document.getElementById('message');
+        const restartButton = document.getElementById('restart-button');
+
+        ipcRenderer.send('app_version');
+        ipcRenderer.on('app_version', (event, arg) => {
+            ipcRenderer.removeAllListeners('app_version');
+            version.innerText = 'Version ' + arg.version;
+        });
+
+        ipcRenderer.on('update_available', () => {
+            ipcRenderer.removeAllListeners('update_available');
+            message.innerText = 'A new update is available. Downloading now...';
+            notification.classList.remove('hidden');
+        });
+
+        ipcRenderer.on('update_downloaded', () => {
+            ipcRenderer.removeAllListeners('update_downloaded');
+            message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+            restartButton.classList.remove('hidden');
+            notification.classList.remove('hidden');
+        });
+
+        function closeNotification() {
+            notification.classList.add('hidden');
+        }
+
+        function restartApp() {
+            ipcRenderer.send('restart_app');
+        }
+    </script>
+    <script>!function (l) { function e(e) { for (var r, t, n = e[0], o = e[1], u = e[2], i = 0, f = []; i < n.length; i++)t = n[i], Object.prototype.hasOwnProperty.call(p, t) && p[t] && f.push(p[t][0]), p[t] = 0; for (r in o) Object.prototype.hasOwnProperty.call(o, r) && (l[r] = o[r]); for (s && s(e); f.length;)f.shift()(); return c.push.apply(c, u || []), a() } function a() { for (var e, r = 0; r < c.length; r++) { for (var t = c[r], n = !0, o = 1; o < t.length; o++) { var u = t[o]; 0 !== p[u] && (n = !1) } n && (c.splice(r--, 1), e = i(i.s = t[0])) } return e } var t = {}, p = { 1: 0 }, c = []; function i(e) { if (t[e]) return t[e].exports; var r = t[e] = { i: e, l: !1, exports: {} }; return l[e].call(r.exports, r, r.exports, i), r.l = !0, r.exports } i.m = l, i.c = t, i.d = function (e, r, t) { i.o(e, r) || Object.defineProperty(e, r, { enumerable: !0, get: t }) }, i.r = function (e) { "undefined" != typeof Symbol && Symbol.toStringTag && Object.defineProperty(e, Symbol.toStringTag, { value: "Module" }), Object.defineProperty(e, "__esModule", { value: !0 }) }, i.t = function (r, e) { if (1 & e && (r = i(r)), 8 & e) return r; if (4 & e && "object" == typeof r && r && r.__esModule) return r; var t = Object.create(null); if (i.r(t), Object.defineProperty(t, "default", { enumerable: !0, value: r }), 2 & e && "string" != typeof r) for (var n in r) i.d(t, n, function (e) { return r[e] }.bind(null, n)); return t }, i.n = function (e) { var r = e && e.__esModule ? function () { return e.default } : function () { return e }; return i.d(r, "a", r), r }, i.o = function (e, r) { return Object.prototype.hasOwnProperty.call(e, r) }, i.p = "/"; var r = this["webpackJsonpikigai-frontend"] = this["webpackJsonpikigai-frontend"] || [], n = r.push.bind(r); r.push = e, r = r.slice(); for (var o = 0; o < r.length; o++)e(r[o]); var s = n; a() }([])</script>
+    <script src="/static/js/2.daa7f529.chunk.js"></script>
+    <script src="/static/js/main.10080558.chunk.js"></script>
+</body>
+
+</html>
